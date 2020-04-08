@@ -1,16 +1,11 @@
 use rust_gpiozero::*;
-use std::thread;
-use std::time::Duration;
-
 fn main() {
     // Create a new LED attached to Pin 17
-    let led = LED::new(17);
+    let mut led = LED::new(17);
 
-    // Blink the LED 5 times
-    for  _ in  0.. 5{
-       led.on();
-        thread::sleep(Duration::from_secs(1));
-        led.off();
-        thread::sleep(Duration::from_secs(1));
-    }
+    // on_time = 2 secs, off_time=3 secs
+    led.blink(2.0,3.0);
+
+    // prevent program from exiting immediately
+    led.wait();
 }
